@@ -268,6 +268,7 @@ public:
 	}
 
 	void get_output_mask(cv::Mat &out) {
+		while (!new_mask) usleep(1000);
 		if (new_mask) {
 			std::lock_guard<std::mutex> hold(lock_mask);
 			out = mask_out->clone();
